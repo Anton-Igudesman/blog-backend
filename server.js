@@ -23,6 +23,18 @@ app.use(cors());
 
 //routes
 
+app.get('/', async (req, res, next) => {
+    try {
+        const posts = await Post.find();
+        res.json({
+            status: 'success',
+            data: posts
+        })
+    } catch (error) {
+        res.json(error);
+    }
+})
+
 //-------------
 //users route
 //-------------
