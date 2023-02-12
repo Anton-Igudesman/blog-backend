@@ -4,7 +4,7 @@ const postRouter = require('./routes/posts/postRoutes');
 const commentRouter = require('./routes/comments/commentRoutes');
 const categoriesRouter = require('./routes/categories/categoriesRoutes');
 const globalErrorHandler = require('./middleware/globalErrorHandler');
-import Post from './models/Post/Post';
+const Post = require('./models/Post/Post');
 const cors = require('cors');
 const isAdmin = require('./middleware/isAdmin');
 const app = express();
