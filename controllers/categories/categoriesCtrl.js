@@ -36,7 +36,9 @@ const getCatCtrl = async (req, res, next) => {
 //get category list
 const getCatListCtrl = async (req, res) => {
     try {
-        const categories = await Category.find();
+        const categories = await Category.find({})
+            .populate('user')
+            .sort('-createdAt');
         res.json({
             status: 'success',
             data: categories
