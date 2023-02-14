@@ -25,6 +25,7 @@ const getCatCtrl = async (req, res, next) => {
     try {
         const { id } = req.params;
         const category = await Category.findById(id)
+        //populate more category info
             .populate('user')
             .sort('-createdAt')
         res.json(category)
