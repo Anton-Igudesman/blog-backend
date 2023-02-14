@@ -23,11 +23,11 @@ const createCatCtrl = async (req, res, next) => {
 //get category
 const getCatCtrl = async (req, res, next) => {
     try {
-        const category = await Category.findById(req.params.id)
-        res.json({
-            status: 'success',
-            data: category
-        })
+        const { id } = req.params;
+        const category = await Category.findById(id)
+            .populate('user')
+            .sort('-createdAt')
+        res.json(category)
     } catch (error) {
         next(appError(error.message));
     }
