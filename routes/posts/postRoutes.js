@@ -11,7 +11,7 @@ const postRouter = express.Router();
 
 //file upload middleware
 const upload = multer( {storage} )
-console.log(upload)
+
 
 //POST/api/v1/posts/
 postRouter.post('/', isLogin, upload.single('image'), postCtrl);

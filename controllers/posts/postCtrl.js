@@ -5,7 +5,7 @@ const appError = require("../../utils/appError");
 //create post
 const postCtrl = async (req, res, next) => {
     const { title, description, category } = req.body;
-    console.log('req.file', req.file);
+    
     try {
         //Find the user
         const author = await User.findById(req.userAuth);
@@ -50,6 +50,7 @@ const getPostCtrl = async (req, res) => {
 
 //get all posts
 const postListCtrl = async (req, res, next) => {
+    console.log(req.query)
     try {
         //get all Posts
         const posts = await Post.find({})
