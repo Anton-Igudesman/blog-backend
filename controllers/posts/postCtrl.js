@@ -39,8 +39,8 @@ const postCtrl = async (req, res, next) => {
 //get post
 const getPostCtrl = async (req, res, next) => {
     try {
+        
         const post = await Post.findById(req.params.id);
-
         const isViewed = post.numViews.includes(req.userAuth);
         if (isViewed) {
            res.json({
@@ -64,12 +64,22 @@ const getPostCtrl = async (req, res, next) => {
 
 //get all posts
 const postListCtrl = async (req, res, next) => {
-    console.log(req.query)
+let posts;
     try {
-        //get all Posts
-        const posts = await Post.find({})
-            .populate('user')
-            .populate('category', 'title');
+
+        const hasCategory = req.query.category
+        if (hasCategory) {
+            posts = await Post.find({ category: hasCategory })
+                .populate('user')
+                .populate('category', 'title');
+                
+            } else {
+                //get all Posts
+            posts = await Post.find({})
+                .populate('user')
+                .populate('category', 'title'); 
+            }
+       
         
         //check if user is blocked by post owner
         const filteredPosts = posts.filter(post => {
