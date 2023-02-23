@@ -1,7 +1,7 @@
 const Post = require("../../models/Post/Post");
 const User = require("../../models/User/User");
 const appError = require("../../utils/appError");
-const ObjectId = require("mongodb");
+const ObjectId = require("mongodb").ObjectId;
 
 //create post
 const postCtrl = async (req, res, next) => {
