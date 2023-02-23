@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema({
         trim: true
     },
     category: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'Category',
         required: [true, 'Post category is required']
     },
