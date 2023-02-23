@@ -20,7 +20,7 @@ postRouter.post('/', isLogin, upload.single('image'), postCtrl);
 postRouter.get('/:id', getPostCtrl);
 
 //GET/api/v1/posts
-postRouter.get('/', isLogin, postListCtrl);
+postRouter.get('/:category?', isLogin, postListCtrl);
 
 //DELETE/api/v1/posts/:id
 postRouter.delete('/:id', isLogin, deletePostCtrl);
