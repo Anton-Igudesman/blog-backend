@@ -68,7 +68,7 @@ const postListCtrl = async (req, res, next) => {
 let posts;
     try {
 
-        const hasCategory = ObjectId(req.query.category)
+        const hasCategory = req.query.category
         if (hasCategory) {
             posts = await Post.find({ Category: hasCategory })
                 .populate('user')
