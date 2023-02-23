@@ -37,14 +37,28 @@ const postCtrl = async (req, res, next) => {
 };
 
 //get post
-const getPostCtrl = async (req, res) => {
+const getPostCtrl = async (req, res, next) => {
     try {
-        res.json({
+        const post = await Post.findById(req.params.id);
+
+        const isViewed = post.numViews.includes(req.userAuth);
+        if (isViewed) {
+           res.json({
             status: 'success',
-            data: 'Blog post data acquired'
-        })
+            data: post
+        }) 
+        } else {
+            post.numViews.push(req.userAuth);
+
+            await post.save();
+            res.json({
+                status: "success",
+                data: post
+            })
+        }
+        
     } catch (error) {
-        res.json(error.message);
+        next(appError(error.message));
     }
 };
 
