@@ -69,7 +69,7 @@ let posts;
 
         const hasCategory = ObjectId(req.query.category)
         if (hasCategory) {
-            posts = await Post.find({ category: hasCategory })
+            posts = await Post.find({ Category: hasCategory })
                 .populate('user')
                 .populate('category', 'title');
                 
